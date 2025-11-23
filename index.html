@@ -140,7 +140,7 @@
   .prize-table td {
     border: 1px solid var(--border);
     padding: 8px;
-    vertical-align: top;
+    vertical-align: middle;
   }
   .prize-table th {
     background: #f0f4f8;
@@ -148,13 +148,25 @@
     color: var(--blue-accent);
     font-weight: 600;
   }
-  .prize-table td:first-child {
+  .prize-table td:nth-child(1) {
+    width: 120px;
+    text-align: center;
+    padding: 8px;
+  }
+  .prize-table td:nth-child(2) {
     font-weight: 600;
-    width: 25%;
+    width: 20%;
   }
   .prize-table td:last-child {
     white-space: nowrap;
     width: 12%;
+  }
+  .prize-table img {
+    max-width: 110px;
+    max-height: 70px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
   .prize-intro {
     margin-top: 6px;
@@ -229,7 +241,7 @@
 
     <div class="section">
       <h2>How the Raffle Works</h2>
-      <p>This year's raffle is <strong>100% online</strong>. When you buy tickets via the payment link below, we collect your name, email and phone number. Your email receipt is your ticket, so check it has the correct number of tickets listed. Instead of using ticket numbers this year, we'll announce winners by name at the draw on 5 December.</p>
+      <p>This year's raffle is <strong>100% online*</strong>. When you buy tickets via the payment link below, we collect your name, email and phone number. Your email receipt is your ticket, so check it has the correct number of tickets listed. Instead of using ticket numbers this year, we'll announce winners by name at the draw on 5 December.</p>
     </div>
 
     <div class="section">
@@ -243,6 +255,9 @@
       <h2>Draw Date & Time</h2>
       <p><strong>Draw Date:</strong> 5 December 2025 at 5pm at the Jubilee Primary School Winter Fair.</p>
       <p><strong>Closing Time:</strong> The online payment link will be deactivated at 4.30pm on 5 December 2025.</p>
+      <p><strong>The Draw:</strong> The top 15-20 prizes will be drawn on the night at the fair. All other prize winners will be notified by email after the event.</p>
+      <p><strong>Winner Notification:</strong> All winners will be contacted by email and/or telephone.</p>
+      <p><strong>Prize Claiming Deadline:</strong> Prizes must be claimed by Friday 12 December 2025. Any unclaimed or returned prizes will be entered into a second draw the following week.</p>
     </div>
 
     <div class="section">
@@ -251,6 +266,7 @@
       <table class="prize-table">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Prize</th>
             <th>Description</th>
             <th>Value</th>
@@ -258,67 +274,79 @@
         </thead>
         <tbody>
           <tr>
+            <td><img src="hyatt_hotel_andaz.png" alt="Hyatt Hotel"></td>
             <td>Hyatt Hotel</td>
-            <td>2 nights in Deluxe King room with breakfast on a weekend in Liverpool St location</td>
+            <td>2 nights in Deluxe King room with breakfast on a weekend in Liverpool St</td>
             <td>£700</td>
           </tr>
           <tr>
+            <td><img src="for_the_senses.png" alt="Architecture for the Senses"></td>
             <td>Architecture for the Senses</td>
-            <td>A free design workshop to review the potential of extending your Hackney home. This includes a 1hr site visit (in Hackney), Sketch Layout, planning policy review and construction and professional fee estimate</td>
+            <td>A free design workshop to review the potential of extending your Hackney home.</td>
             <td>£600</td>
           </tr>
           <tr>
+            <td><img src="f45_logo_desktop.svg" alt="F45 Dalston"></td>
             <td>F45 Dalston</td>
             <td>3 month upfront gym membership</td>
             <td>£580</td>
           </tr>
           <tr>
+            <td><img src="oblix_at_the_shard.jpeg" alt="Oblix - The Shard"></td>
             <td>Oblix - The Shard</td>
             <td>Three-course dining experience with wine pairing for two</td>
             <td>£350</td>
           </tr>
           <tr>
+            <td><img src="the_organised_curator.jpeg" alt="The Organised Curator"></td>
             <td>The Organised Curator</td>
-            <td>1 full day (6 hour session)</td>
+            <td>1 full day of organising your home - 6 hour session</td>
             <td>£300</td>
           </tr>
           <tr>
+            <td><img src="imogen_love_studios.png" alt="Imogen Love"></td>
             <td>Imogen Love</td>
             <td>A private sound bath for 4 people at her N16 studio</td>
             <td>£280</td>
           </tr>
           <tr>
+            <td><img src="tempo_dance.jpg" alt="Tempo Dance"></td>
             <td>Tempo Dance</td>
             <td>1 week tempo dance camp</td>
             <td>£225</td>
           </tr>
           <tr>
+            <td><img src="1h_mayfair.png" alt="1 Hotel Mayfair"></td>
             <td>1 Hotel Mayfair</td>
             <td>60 minute massage of your choice</td>
             <td>£180</td>
           </tr>
           <tr>
-            <td>Duclie (formerly known as Haekels)</td>
+            <td><img src="dulcie.png" alt="Dulcie"></td>
+            <td>Dulcie (formerly known as Haekels)</td>
             <td>100ml fragrance worth £140 + small perfume £38</td>
             <td>£178</td>
           </tr>
           <tr>
+            <td><img src="fun_clubb.png" alt="Funn Clubb"></td>
             <td>Funn Clubb</td>
             <td>1 week of club - Feb half term</td>
             <td>£175</td>
           </tr>
           <tr>
+            <td><img src="desi_dolls.png" alt="Desi Dolls"></td>
             <td>Desi Dolls</td>
             <td>A box of toys (Islamic faith)</td>
             <td>£160</td>
           </tr>
           <tr>
+            <td><img src="nts_clothing.png" alt="NTS"></td>
             <td>NTS</td>
             <td>£150 worth of Clothing / Merch</td>
             <td>£150</td>
           </tr>
           <tr class="prize-more">
-            <td colspan="3">… more prizes will be added before the draw!</td>
+            <td colspan="4">… more prizes will be added before the draw!</td>
           </tr>
         </tbody>
       </table>
@@ -327,6 +355,7 @@
     <div class="section">
       <h2>Contact</h2>
       <p>For any questions, please contact: <strong>raffle@jubileepta.org.uk</strong></p>
+      <p style="font-size: 0.85rem; margin-top: 12px; opacity: 0.9;">* If you're unable to pay online, please email the above address and we'll arrange an alternative for you.</p>
     </div>
 
     <div class="section">
