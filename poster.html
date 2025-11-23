@@ -54,16 +54,16 @@
     font-weight: 800;
     color: var(--blue-accent);
     margin: 0;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 60px;
   }
   .snowflake {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     filter: drop-shadow(0 2px 4px rgba(74, 144, 226, 0.3));
   }
   .header-subtitle {
@@ -80,7 +80,7 @@
   }
   .prize-row {
     display: grid;
-    grid-template-columns: 50px 180px 110px 1fr;
+    grid-template-columns: 180px 110px 1fr;
     gap: 20px;
     align-items: center;
     padding: 18px 20px;
@@ -92,11 +92,24 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .prize-rank {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #ccc;
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--blue-accent);
     text-align: center;
+  }
+  .footer-highlight {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue-accent);
+    letter-spacing: 0.1em;
+  }
+  .footer-separator {
+    display: inline-block;
+    margin: 0 20px;
+    color: var(--blue-accent);
+    font-weight: 300;
   }
   .prize-logo {
     display: flex;
@@ -145,12 +158,9 @@
       font-size: 1.3rem;
     }
     .prize-row {
-      grid-template-columns: 35px 120px 80px 1fr;
+      grid-template-columns: 120px 80px 1fr;
       gap: 12px;
       padding: 12px 15px;
-    }
-    .prize-rank {
-      font-size: 1.3rem;
     }
     .prize-logo img {
       max-width: 110px;
@@ -192,11 +202,12 @@
     }
     .header-title {
       font-size: 3rem;
-      gap: 15px;
+      gap: 40px;
+      letter-spacing: 0.15em;
     }
     .snowflake {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       filter: none;
     }
     .header-subtitle {
@@ -208,10 +219,21 @@
     }
     .prize-row {
       padding: 9px 10px;
-      grid-template-columns: 35px 115px 75px 1fr;
+      grid-template-columns: 115px 75px 1fr;
       gap: 10px;
       page-break-inside: avoid;
       background: white;
+    }
+    .footer {
+      margin-top: 20px;
+      padding-top: 15px;
+      page-break-inside: avoid;
+    }
+    .footer-highlight {
+      font-size: 1.2rem;
+    }
+    .footer-separator {
+      margin: 0 10px;
     }
     .prize-row:nth-child(even) {
       background: #fafbfc;
@@ -256,7 +278,6 @@
   <div class="prize-list">
     
     <div class="prize-row">
-      <div class="prize-rank">1</div>
       <div class="prize-logo">
         <img src="hyatt_hotel_andaz.png" alt="Andaz London Liverpool Street">
       </div>
@@ -265,7 +286,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">2</div>
       <div class="prize-logo">
         <img src="for_the_senses.png" alt="For the Senses">
       </div>
@@ -274,7 +294,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">3</div>
       <div class="prize-logo">
         <img src="f45_logo_desktop.svg" alt="F45 Training">
       </div>
@@ -283,7 +302,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">4</div>
       <div class="prize-logo">
         <img src="oblix_at_the_shard.jpeg" alt="Oblix at The Shard">
       </div>
@@ -292,7 +310,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">5</div>
       <div class="prize-logo">
         <img src="the_organised_curator.jpeg" alt="The Organised Curator">
       </div>
@@ -301,7 +318,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">6</div>
       <div class="prize-logo">
         <img src="imogen_love_studios.png" alt="Imogen Love">
       </div>
@@ -310,7 +326,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">7</div>
       <div class="prize-logo">
         <img src="tempo_dance.jpg" alt="Tempo Dance Camp">
       </div>
@@ -319,7 +334,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">8</div>
       <div class="prize-logo">
         <img src="1h_mayfair.png" alt="1 Hotel Mayfair">
       </div>
@@ -328,7 +342,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">9</div>
       <div class="prize-logo">
         <img src="dulcie.png" alt="Dulcie">
       </div>
@@ -337,7 +350,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">10</div>
       <div class="prize-logo">
         <img src="fun_clubb.png" alt="Funn Clubb">
       </div>
@@ -346,7 +358,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">11</div>
       <div class="prize-logo">
         <img src="desi_dolls.png" alt="Desi Dolls">
       </div>
@@ -355,7 +366,6 @@
     </div>
 
     <div class="prize-row">
-      <div class="prize-rank">12</div>
       <div class="prize-logo">
         <img src="nts_clothing.png" alt="NTS">
       </div>
@@ -364,6 +374,12 @@
     </div>
 
   </div>
+
+  <footer class="footer">
+    <div class="footer-highlight">
+      70+ PRIZES<span class="footer-separator">|</span>£7,000+ TOTAL VALUE
+    </div>
+  </footer>
 
 </div>
 </body>
