@@ -28,7 +28,7 @@
   }
   .page {
     width: 100%;
-    max-width: 760px;
+    max-width: 900px;
   }
 
   /* Header */
@@ -59,7 +59,7 @@
     object-fit: contain;
   }
   .header-text h1 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin: 0 0 2px 0;
     color: var(--blue-accent);
   }
@@ -95,7 +95,7 @@
   }
 
   h2 {
-    font-size: 1rem;
+    font-size: 1.15rem;
     margin: 12px 0 6px 0;
     color: var(--blue-accent);
   }
@@ -129,6 +129,10 @@
   a:hover {
     background: var(--blue-light);
   }
+  .prize-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .prize-table {
     width: 100%;
     border-collapse: collapse;
@@ -136,17 +140,10 @@
     margin-bottom: 4px;
     font-size: 0.88rem;
   }
-  .prize-table th,
   .prize-table td {
     border: 1px solid var(--border);
     padding: 8px;
     vertical-align: middle;
-  }
-  .prize-table th {
-    background: #f0f4f8;
-    text-align: left;
-    color: var(--blue-accent);
-    font-weight: 600;
   }
   .prize-table td:nth-child(1) {
     width: 120px;
@@ -264,14 +261,10 @@
     <div class="section">
       <h2>Prizes</h2>
       <p class="prize-intro">Below are the 12 highest value prizes confirmed so far. <strong>There are currently 70+ prizes worth over £7k in total, and we're adding more every day leading up to the fair!</strong></p>
-      <table class="prize-table">
-        <thead>
-          <tr>
-            <th colspan="2">Prize</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
+      <p class="prize-intro"><a href="all-prizes.html" style="font-weight: 600;">View the complete list of all prizes →</a></p>
+      <div class="prize-table-wrapper">
+        <table class="prize-table">
+          <tbody>
           <tr>
             <td><img src="hyatt_hotel_andaz.png" alt="Hyatt Hotel"></td>
             <td>Hyatt Hotel</td>
@@ -335,8 +328,9 @@
           <tr class="prize-more">
             <td colspan="3">… more prizes will be added before the draw!</td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="section">
