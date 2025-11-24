@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raffle Tracker - Jubilee PTA Winter Fair 2025</title>
+<link rel="icon" type="image/png" href="snowflake.png">
+<style>
+  :root {
+    --blue-accent: #4a90e2;
+    --blue-light: #eef6ff;
+    --dark: #222;
+    --border: #dfe3e8;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f7f8fa;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+  .page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--blue-accent);
+  }
+  .header-logo, .header-pta-logo {
+    flex-shrink: 0;
+  }
+  .header-logo img {
+    height: 50px;
+    width: auto;
+  }
+  .header-pta-logo img {
+    height: 50px;
+    max-width: 180px;
+  }
+  .header-text {
+    flex: 1;
+    min-width: 200px;
+  }
+  .header-text h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--blue-accent);
+  }
+  .header-text p {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Back Link */
+  .back-link {
+    margin-bottom: 20px;
+  }
+  .back-link a {
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* Card */
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .intro h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    color: var(--dark);
+  }
+  .intro p {
+    margin: 0;
+    color: #666;
+    font-size: 1.05rem;
+  }
+  .last-updated {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* Progress Section */
+  .progress-section {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .amount-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+    gap: 20px;
+  }
+  .current-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--blue-accent);
+  }
+  .target-amount {
+    font-size: 1.3rem;
+    color: #666;
+  }
+
+  /* Progress Bar */
+  .progress-bar-container {
+    width: 100%;
+    height: 50px;
+    background: var(--blue-light);
+    border-radius: 25px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-accent) 0%, #2c5aa0 100%);
+    border-radius: 25px;
+    transition: width 1s ease-out;
+    position: relative;
+  }
+  .progress-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    z-index: 1;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .stat-box {
+    background: var(--blue-light);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .stat-box .label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  .stat-box .value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--blue-accent);
+  }
+  .stat-box .value.countdown {
+    font-size: 1.4rem;
+  }
+
+  .thank-you {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--blue-light) 0%, #fff 100%);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .thank-you h3 {
+    margin: 0 0 10px 0;
+    color: var(--blue-accent);
+    font-size: 1.5rem;
+  }
+  .thank-you p {
+    margin: 0;
+    color: #555;
+  }
+
+  @media (max-width: 560px) {
+    .header {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .header-logo,
+    .header-pta-logo {
+      order: 1;
+      flex: 0 0 auto;
+    }
+    .header-logo img,
+    .header-pta-logo img {
+      height: 42px;
+    }
+    .header-pta-logo img {
+      max-width: 140px;
+    }
+    .header-text {
+      order: 2;
+      flex: 1 1 100%;
+      min-width: auto;
+      text-align: center;
+    }
+    .card {
+      padding: 25px 20px;
+    }
+    .intro h2 {
+      font-size: 1.5rem;
+    }
+    .current-amount {
+      font-size: 2rem;
+    }
+    .target-amount {
+      font-size: 1.1rem;
+    }
+    .amount-display {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .stats {
+      grid-template-columns: 1fr;
+    }
+    .stat-box .value.countdown {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div class="header-logo">
+      <img src="snowflake.png" alt="Winter Fair snowflake">
+    </div>
+    <div class="header-text">
+      <h1>Raffle Fundraising Tracker</h1>
+      <p>Winter Fair 2025 • Jubilee Primary School</p>
+    </div>
+    <div class="header-pta-logo">
+      <img src="jubilee-pta-logo.png" alt="Jubilee PTA logo">
+    </div>
+  </header>
+
+  <div class="back-link">
+    ← <a href="raffle-info.html">Back to Raffle Info</a>
+  </div>
+
+  <main class="card">
+    <div class="intro">
+      <h2>🎯 Fundraising Goal</h2>
+      <p>All proceeds go towards new KS2 playground equipment!</p>
+      <div class="last-updated">Last updated: 24 November 2025</div>
+    </div>
+
+    <div class="progress-section">
+      <div class="amount-display">
+        <div class="current-amount">£350</div>
+        <div class="target-amount">of £2,000 goal</div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" style="width: 17.5%;"></div>
+        <div class="progress-percentage">17.5%</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="label">Tickets Sold</div>
+          <div class="value">50</div>
+        </div>
+        <div class="stat-box">
+          <div class="label">Time Until Raffle Closes</div>
+          <div class="value countdown">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thank-you">
+      <h3>Thank You! 🎉</h3>
+      <p>Every ticket purchased helps us reach our goal. Buy more tickets to boost your chances, or share the raffle with friends and family!</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// Update these values to change the display
+const CURRENT_AMOUNT = 419;   // Update this with current amount raised
+const TARGET_AMOUNT = 4000;   // Update this with target amount
+const TICKETS_SOLD = 419;     // Update this with tickets sold
+const LAST_UPDATED = '24 November 2025, 3:45pm';  // Update with current date and time
+
+// Raffle closing time: December 5th, 2025 at 4:30pm
+const RAFFLE_CLOSE_DATE = new Date('2025-12-05T16:30:00');
+
+// Calculate percentage
+const percentage = Math.min((CURRENT_AMOUNT / TARGET_AMOUNT) * 100, 100);
+
+// Update static values
+document.querySelector('.current-amount').textContent = `£${CURRENT_AMOUNT.toLocaleString()}`;
+document.querySelector('.target-amount').textContent = `of £${TARGET_AMOUNT.toLocaleString()} goal`;
+document.querySelector('.progress-bar-fill').style.width = `${percentage}%`;
+document.querySelector('.progress-percentage').textContent = `${percentage.toFixed(1)}%`;
+document.querySelector('.stat-box:nth-child(1) .value').textContent = TICKETS_SOLD;
+document.querySelector('.last-updated').textContent = `Last updated: ${LAST_UPDATED}`;
+
+// Countdown timer function
+function updateCountdown() {
+  const now = new Date();
+  const timeRemaining = RAFFLE_CLOSE_DATE - now;
+  
+  if (timeRemaining <= 0) {
+    document.querySelector('.countdown').textContent = 'Closed';
+    return;
+  }
+  
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  
+  let countdownText = '';
+  
+  if (days > 0) {
+    countdownText = `${days}d ${hours}h`;
+  } else if (hours > 0) {
+    countdownText = `${hours}h ${minutes}m`;
+  } else {
+    countdownText = `${minutes}m`;
+  }
+  
+  document.querySelector('.countdown').textContent = countdownText;
+}
+
+// Update countdown immediately and then every minute
+updateCountdown();
+setInterval(updateCountdown, 60000); // Update every 60 seconds
+</script>
+</body>
+</html>
+
