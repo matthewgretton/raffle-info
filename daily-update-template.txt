@@ -1,0 +1,17 @@
+🎯 Daily Raffle Update - [DATE]
+
+We're making great progress! We've now raised £[AMOUNT] towards our goal of £4,000 for new KS2 playground equipment - that's [PERCENTAGE]% of our target! 🎉
+
+[IF NEW PRIZES TODAY: New prizes added today:]
+• [Prize 1] - [Description] - £[Value]
+• [Prize 2] - [Description] - £[Value]
+[END IF]
+
+We now have [NUMBER] amazing prizes worth £[TOTAL_VALUE] in total, with more confirmed prizes on their way!
+
+The draw is on 5 December at 5pm - don't miss out!
+
+🎟️ Buy tickets, see all prizes & track our progress: https://jubileepta.org.uk/raffle-info
+
+Please share this link with friends and family, and on social media, to help us reach our goal! 🙌
+
