@@ -141,6 +141,7 @@
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     position: relative;
+    overflow: hidden;
   }
   .progress-bar-fill {
     height: 100%;
@@ -148,6 +149,30 @@
     border-radius: 25px;
     transition: width 1s ease-out;
     position: relative;
+  }
+  .progress-bar-fill.exceeded {
+    background: linear-gradient(90deg, var(--blue-accent) 0%, #2c5aa0 80%, #f39c12 80%, #e67e22 100%);
+    border-radius: 25px;
+  }
+  .target-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #27ae60;
+    z-index: 2;
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.5);
+  }
+  .target-marker::after {
+    content: '£4k target';
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #27ae60;
+    font-weight: 600;
+    white-space: nowrap;
   }
   .progress-percentage {
     position: absolute;
@@ -314,24 +339,60 @@
 
 <script>
 // Update these values to change the display
-const CURRENT_AMOUNT = 3833;   // Update this with current amount raised
+const CURRENT_AMOUNT = 4170;   // Update this with current amount raised
 const TARGET_AMOUNT = 4000;   // Update this with target amount
-const TICKETS_SOLD = 3833;     // Update this with tickets sold
-const LAST_UPDATED = '4 December 2025, 8:30pm';  // Update with current date and time
+const TICKETS_SOLD = 4170;     // Update this with tickets sold
+const LAST_UPDATED = '4 December 2025, 11:00pm';  // Update with current date and time
 
 // Raffle closing time: December 5th, 2025 at 4:30pm
 const RAFFLE_CLOSE_DATE = new Date('2025-12-05T16:30:00');
 
 // Calculate percentage
-const percentage = Math.min((CURRENT_AMOUNT / TARGET_AMOUNT) * 100, 100);
+const rawPercentage = (CURRENT_AMOUNT / TARGET_AMOUNT) * 100;
+const percentage = Math.min(rawPercentage, 100);
+const targetExceeded = rawPercentage >= 100;
 
 // Update static values
 document.querySelector('.current-amount').textContent = `£${CURRENT_AMOUNT.toLocaleString()}`;
-document.querySelector('.target-amount').textContent = `of £${TARGET_AMOUNT.toLocaleString()} goal`;
-document.querySelector('.progress-bar-fill').style.width = `${percentage}%`;
-document.querySelector('.progress-percentage').textContent = `${percentage.toFixed(1)}%`;
 document.querySelector('.stat-box:nth-child(1) .value').textContent = TICKETS_SOLD;
 document.querySelector('.last-updated').textContent = `Last updated: ${LAST_UPDATED}`;
+
+if (targetExceeded) {
+  // Celebration mode!
+  const maxDisplay = 120; // Show up to 120% on the bar
+  const scaledPercentage = Math.min(rawPercentage, maxDisplay);
+  const targetPosition = (100 / maxDisplay) * 100; // Where 100% mark sits on scaled bar
+  const fillWidth = (scaledPercentage / maxDisplay) * 100;
+  const colorChangePoint = (targetPosition / fillWidth) * 100; // Exact point where color changes
+  
+  const overAmount = CURRENT_AMOUNT - TARGET_AMOUNT;
+  document.querySelector('.target-amount').innerHTML = `TARGET PASSED! <span style="color: #e67e22;">+£${overAmount.toLocaleString()} over!</span>`;
+  document.querySelector('.target-amount').style.color = '#27ae60';
+  document.querySelector('.target-amount').style.fontWeight = '700';
+  
+  const progressFill = document.querySelector('.progress-bar-fill');
+  progressFill.style.width = `${fillWidth}%`;
+  progressFill.style.background = `linear-gradient(90deg, var(--blue-accent) 0%, #2c5aa0 ${colorChangePoint}%, #f39c12 ${colorChangePoint}%, #e67e22 100%)`;
+  progressFill.classList.add('exceeded');
+  
+  // Add target marker - positioned on the container at same point as color change
+  const container = document.querySelector('.progress-bar-container');
+  const marker = document.createElement('div');
+  marker.className = 'target-marker';
+  marker.style.left = `${targetPosition}%`;
+  container.appendChild(marker);
+  
+  document.querySelector('.progress-percentage').textContent = `${rawPercentage.toFixed(0)}%`;
+  document.querySelector('.progress-percentage').style.color = '#e67e22';
+  document.querySelector('.progress-percentage').style.fontWeight = '800';
+  document.querySelector('.thank-you h3').textContent = 'We Did It! 🎉🎉🎉';
+  document.querySelector('.thank-you p').textContent = `Amazing! We smashed our £${TARGET_AMOUNT.toLocaleString()} target! Thank you to everyone who bought tickets and helped spread the word!`;
+  document.querySelector('.intro h2').textContent = '🎯 Target Passed!';
+} else {
+  document.querySelector('.target-amount').textContent = `of £${TARGET_AMOUNT.toLocaleString()} goal`;
+  document.querySelector('.progress-bar-fill').style.width = `${percentage}%`;
+  document.querySelector('.progress-percentage').textContent = `${percentage.toFixed(1)}%`;
+}
 
 // Countdown timer function
 function updateCountdown() {
