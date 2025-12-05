@@ -146,42 +146,60 @@ def parse_prize(prize_string):
 def create_email_content(winner_name, prize_info, total_raised):
     """
     Create the email subject and body for a winner.
+    Returns subject, plain_text_body, html_body
     """
     subject = "🎉 You've won a prize in the Jubilee Winter Fair Raffle!"
     
     # Format the total raised nicely
     total_str = f"£{total_raised:,}" if total_raised else "over £700"
     
-    # Build prize display
-    prize_display = f"🎁  {prize_info['description']}" if prize_info['description'] else f"🎁  {prize_info['donor']}"
-    donor_line = f"    Donated by: {prize_info['donor']}" if prize_info['description'] else ""
-    value_line = f"    Value: {prize_info['value']}" if prize_info['value'] else ""
+    first_name = winner_name.split()[0]
+    prize_desc = prize_info['description'] if prize_info['description'] else prize_info['donor']
     
-    body = f"""Hi {winner_name.split()[0]},
+    # Plain text version
+    plain_body = f"""Hi {first_name},
 
-Great news – you're a winner! 🎉
+Great news, you're a winner! 🎉
 
-🎁 Your prize:
-    {prize_info['description'] if prize_info['description'] else prize_info['donor']}
+Your prize:
+    {prize_desc}
     From: {prize_info['donor']}
     Worth: {prize_info['value']}
 
 This email is your proof of winning. To collect:
-  • Pick it up at the Winter Fair (Friday 5th December)
-  • Or email raffle@jubileepta.org.uk to arrange collection
+  • Monday to Wednesday (week of 8th Dec): collect after school drop-off (details to follow)
+  • Or email raffle@jubileepta.org.uk to arrange pick up
 
-Please claim by Friday 12th December.
+Please collect by Friday 12th December. Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used, so please let us know if you're not certain you'll use yours so another family can enjoy it.
 
-Thanks for taking part – together we raised {total_str} for the KS2 playground!
+Thanks for taking part, together we raised an amazing {total_str} for the KS2 playground!
 
 Best wishes,
-Jubilee Raffle Team
+
+Raffle Team
 """
     
-    # Clean up any double newlines from empty lines
-    body = re.sub(r'\n\s*\n\s*\n', '\n\n', body)
+    # HTML version - prize box at top, simple flow at end
+    html_body = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+<p style="font-size: 16px;">Hi {first_name},</p>
+<p style="font-size: 18px;"><strong>Great news, you're a winner!</strong> 🎉</p>
+<div style="background: #f0f7ff; border-left: 4px solid #4a90e2; padding: 15px 20px; margin: 15px 0; border-radius: 4px;">
+<p style="margin: 0 0 8px 0; font-size: 14px; color: #666;">YOUR PRIZE</p>
+<p style="margin: 0 0 5px 0; font-size: 18px;"><strong>{prize_desc}</strong></p>
+<p style="margin: 0; color: #666;">From: {prize_info['donor']}<br>Worth: <strong>{prize_info['value']}</strong></p>
+</div>
+<p style="font-size: 14px;">This email is your proof of winning.</p>
+<p style="font-size: 14px;"><strong>To collect:</strong><br>• Monday to Wednesday (week of 8th Dec): collect after school drop-off (details to follow)<br>• Or email <a href="mailto:raffle@jubileepta.org.uk">raffle@jubileepta.org.uk</a> to arrange pick up</p>
+<p style="font-size: 14px;"><strong>Please collect by Friday 12th December.</strong> Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used, so please let us know if you're not certain you'll use yours so another family can enjoy it.</p>
+<p style="font-size: 14px;">Thanks for taking part, together we raised an amazing <strong>{total_str}</strong> for the KS2 playground!</p>
+<p style="font-size: 14px;">Best wishes,<br><strong>Raffle Team</strong></p>
+</body>
+</html>"""
     
-    return subject, body
+    return subject, plain_body, html_body
 
 
 def load_winners(csv_path):
@@ -206,16 +224,16 @@ def load_winners(csv_path):
     return winners
 
 
-def send_email(recipient_email, recipient_name, subject, body, smtp_user, smtp_password, dry_run=False):
+def send_email(recipient_email, recipient_name, subject, plain_body, html_body, smtp_user, smtp_password, dry_run=False):
     """
-    Send an email to a single recipient.
+    Send an email to a single recipient with both plain text and HTML versions.
     """
     if dry_run:
         print(f"\n{'='*60}")
         print(f"TO: {recipient_name} <{recipient_email}>")
         print(f"SUBJECT: {subject}")
         print(f"{'='*60}")
-        print(body)
+        print(plain_body)
         return True
     
     try:
@@ -225,8 +243,10 @@ def send_email(recipient_email, recipient_name, subject, body, smtp_user, smtp_p
         msg['To'] = f"{recipient_name} <{recipient_email}>"
         msg['Reply-To'] = SENDER_EMAIL
         
-        # Plain text version
-        msg.attach(MIMEText(body, 'plain', 'utf-8'))
+        # Plain text version (fallback)
+        msg.attach(MIMEText(plain_body, 'plain', 'utf-8'))
+        # HTML version (preferred)
+        msg.attach(MIMEText(html_body, 'html', 'utf-8'))
         
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()
@@ -337,7 +357,7 @@ def main():
     failed = 0
     
     for i, winner in enumerate(winners, 1):
-        subject, body = create_email_content(
+        subject, plain_body, html_body = create_email_content(
             winner['name'],
             winner['prize'],
             total_raised
@@ -350,7 +370,8 @@ def main():
             winner['email'],
             winner['name'],
             subject,
-            body,
+            plain_body,
+            html_body,
             smtp_user,
             smtp_password,
             dry_run
