@@ -166,11 +166,11 @@ Your prize:
     From: {prize_info['donor']}
     Worth: {prize_info['value']}
 
-This email is your proof of winning. To collect:
-  • Monday to Wednesday (week of 8th Dec): collect after school drop-off (details to follow)
-  • Or email raffle@jubileepta.org.uk to arrange pick up
+This email is your proof of winning. To claim your prize:
+  • Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email raffle@jubileepta.org.uk to arrange
+  • Digital vouchers: we'll send these separately by email
 
-Please collect by Friday 12th December. Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used, so please let us know if you're not certain you'll use yours so another family can enjoy it.
+Please claim by Friday 12th December. Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used. If you won't use it, please let us know so another family can enjoy it.
 
 Thanks for taking part, together we raised an amazing {total_str} for the KS2 playground!
 
@@ -192,8 +192,8 @@ Raffle Team
 <p style="margin: 0; color: #666;">From: {prize_info['donor']}<br>Worth: <strong>{prize_info['value']}</strong></p>
 </div>
 <p style="font-size: 14px;">This email is your proof of winning.</p>
-<p style="font-size: 14px;"><strong>To collect:</strong><br>• Monday to Wednesday (week of 8th Dec): collect after school drop-off (details to follow)<br>• Or email <a href="mailto:raffle@jubileepta.org.uk">raffle@jubileepta.org.uk</a> to arrange pick up</p>
-<p style="font-size: 14px;"><strong>Please collect by Friday 12th December.</strong> Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used, so please let us know if you're not certain you'll use yours so another family can enjoy it.</p>
+<p style="font-size: 14px;"><strong>To claim your prize:</strong><br>• Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email <a href="mailto:raffle@jubileepta.org.uk">raffle@jubileepta.org.uk</a> to arrange<br>• Digital vouchers: we'll send these separately by email</p>
+<p style="font-size: 14px;"><strong>Please claim by Friday 12th December.</strong> Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used. If you won't use it, please let us know so another family can enjoy it.</p>
 <p style="font-size: 14px;">Thanks for taking part, together we raised an amazing <strong>{total_str}</strong> for the KS2 playground!</p>
 <p style="font-size: 14px;">Best wishes,<br><strong>Raffle Team</strong></p>
 </body>

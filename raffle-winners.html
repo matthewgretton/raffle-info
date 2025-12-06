@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raffle Winners - Jubilee PTA Winter Fair 2025</title>
+<link rel="icon" type="image/png" href="snowflake.png">
+<meta property="og:image" content="snowflake.png">
+<meta name="twitter:image" content="snowflake.png">
+<style>
+  :root {
+    --blue-accent: #4a90e2;
+    --blue-light: #eef6ff;
+    --dark: #222;
+    --border: #dfe3e8;
+    --gold: #f5a623;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f7f8fa;
+    color: var(--dark);
+    display: flex;
+    justify-content: center;
+  }
+  .page {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  /* Header */
+  .header {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom: 18px;
+  }
+  .header-logo {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+  .header-text h1 {
+    font-size: 1.4rem;
+    margin: 0 0 2px 0;
+    color: var(--blue-accent);
+  }
+  .header-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+  .header-text {
+    flex: 1 1 auto;
+    min-width: 200px;
+    text-align: center;
+  }
+  .header-pta-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-pta-logo img {
+    width: 48px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Celebration Banner */
+  .celebration {
+    background: linear-gradient(135deg, #4a90e2, #2c5aa0);
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  }
+  .celebration h2 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+  }
+  .celebration p {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+  .celebration .total {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 15px 0;
+  }
+
+  /* Content Card */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 18px;
+  }
+
+  /* Winners Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--blue-light);
+    color: var(--blue-accent);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 2px solid var(--blue-accent);
+  }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover {
+    background: #fafbfc;
+  }
+  .winner-name {
+    font-weight: 600;
+    color: var(--blue-accent);
+  }
+  .prize-donor {
+    font-weight: 600;
+  }
+  .prize-desc {
+    color: #555;
+    font-size: 0.85rem;
+  }
+  .prize-value {
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* Back Link */
+  .back-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .back-link a {
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    table {
+      font-size: 0.8rem;
+    }
+    th, td {
+      padding: 8px 6px;
+    }
+    .celebration h2 {
+      font-size: 1.5rem;
+    }
+    .celebration .total {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-logo">
+        <img src="snowflake.png" alt="Snowflake">
+      </div>
+      <div class="header-text">
+        <h1>🎉 Raffle Winners 🎉</h1>
+        <p>Winter Fair 2025</p>
+      </div>
+      <div class="header-pta-logo">
+        <img src="pta-logo.png" alt="PTA">
+      </div>
+    </div>
+
+    <!-- Celebration Banner -->
+    <div class="celebration">
+      <h2>Congratulations to all our winners!</h2>
+      <p>Together we raised</p>
+      <div class="total">£5,002</div>
+      <p>for the KS2 playground! 🎊</p>
+    </div>
+
+    <!-- Winners Table -->
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Winner</th>
+            <th>Prize</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="winner-name">Ben Golding</td>
+            <td><span class="prize-donor">Basement 144</span><br><span class="prize-desc">5-hour venue hire</span></td>
+            <td class="prize-value">£750</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Polly Clifton</td>
+            <td><span class="prize-donor">Hyatt Hotel</span><br><span class="prize-desc">Two-night stay with breakfast</span></td>
+            <td class="prize-value">£700</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Laura Kay</td>
+            <td><span class="prize-donor">Architecture for the Senses</span><br><span class="prize-desc">Home design workshop & site visit</span></td>
+            <td class="prize-value">£600</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Molly Macdonald</td>
+            <td><span class="prize-donor">F45 Dalston</span><br><span class="prize-desc">3-month membership</span></td>
+            <td class="prize-value">£580</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Soila Patajoki</td>
+            <td><span class="prize-donor">Oblix - The Shard</span><br><span class="prize-desc">Dinner for two with wine pairing</span></td>
+            <td class="prize-value">£350</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Merisan Guler</td>
+            <td><span class="prize-donor">Instagym</span><br><span class="prize-desc">3 months platinum membership</span></td>
+            <td class="prize-value">£300</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Alexandra Gerber</td>
+            <td><span class="prize-donor">The Organised Curator</span><br><span class="prize-desc">Full-day organising session</span></td>
+            <td class="prize-value">£300</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Sam Larner</td>
+            <td><span class="prize-donor">Imogen Love</span><br><span class="prize-desc">Private sound bath for four</span></td>
+            <td class="prize-value">£280</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Matthew Fenton</td>
+            <td><span class="prize-donor">Blok Clapton</span><br><span class="prize-desc">10 premium classes</span></td>
+            <td class="prize-value">£235</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Edward Moseley</td>
+            <td><span class="prize-donor">Tempo Dance</span><br><span class="prize-desc">One-week dance camp</span></td>
+            <td class="prize-value">£225</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Jo McNeal</td>
+            <td><span class="prize-donor">1 Hotel Mayfair</span><br><span class="prize-desc">60-minute massage</span></td>
+            <td class="prize-value">£180</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Aziza Zina</td>
+            <td><span class="prize-donor">Funn Clubb</span><br><span class="prize-desc">One-week holiday club pass</span></td>
+            <td class="prize-value">£175</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Kathleen McKeating</td>
+            <td><span class="prize-donor">Desi Dolls</span><br><span class="prize-desc">Toy bundle</span></td>
+            <td class="prize-value">£160</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Alice Aitken</td>
+            <td><span class="prize-donor">NTS</span><br><span class="prize-desc">Clothing & merch bundle</span></td>
+            <td class="prize-value">£150</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Mr Martin Wiltshire</td>
+            <td><span class="prize-donor">The Organised Curator</span><br><span class="prize-desc">Half-day organising session</span></td>
+            <td class="prize-value">£150</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Nick Swaby</td>
+            <td><span class="prize-donor">Dulcie (Haekels)</span><br><span class="prize-desc">100ml fragrance</span></td>
+            <td class="prize-value">£140</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Gemma Anderson</td>
+            <td><span class="prize-donor">Simply Circus</span><br><span class="prize-desc">Two-day holiday camp pass</span></td>
+            <td class="prize-value">£130</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Kavya Kaushik</td>
+            <td><span class="prize-donor">Tom Foolery</span><br><span class="prize-desc">£125 voucher</span></td>
+            <td class="prize-value">£125</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Gemma Anderson</td>
+            <td><span class="prize-donor">Tom Foolery</span><br><span class="prize-desc">£125 voucher</span></td>
+            <td class="prize-value">£125</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Kyverdale Road</td>
+            <td><span class="prize-donor">We Are Worm</span><br><span class="prize-desc">Wreath</span></td>
+            <td class="prize-value">£120</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Lily Thompson</td>
+            <td><span class="prize-donor">Calong</span><br><span class="prize-desc">£100 meal voucher</span></td>
+            <td class="prize-value">£100</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Natalie Caetano</td>
+            <td><span class="prize-donor">Inkfact Tattoo Studio</span><br><span class="prize-desc">Tattoo (up to £100)</span></td>
+            <td class="prize-value">£100</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Georgiana Plesuvu</td>
+            <td><span class="prize-donor">Tako</span><br><span class="prize-desc">£100 dining voucher</span></td>
+            <td class="prize-value">£100</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Lucy Lloyd-Scott</td>
+            <td><span class="prize-donor">Whole Foods</span><br><span class="prize-desc">Goodie bag</span></td>
+            <td class="prize-value">£100</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Alexis Karlin</td>
+            <td><span class="prize-donor">Whole Foods</span><br><span class="prize-desc">Goodie bag</span></td>
+            <td class="prize-value">£100</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Tom Huddleston</td>
+            <td><span class="prize-donor">Londis N16</span><br><span class="prize-desc">Gift hamper</span></td>
+            <td class="prize-value">£93</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Agnieszka de Sousa</td>
+            <td><span class="prize-donor">Studio 58 London</span><br><span class="prize-desc">Haircut</span></td>
+            <td class="prize-value">£90</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Andrew Lumsden</td>
+            <td><span class="prize-donor">Studio 58 London</span><br><span class="prize-desc">Haircut</span></td>
+            <td class="prize-value">£90</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Miss P L Roe</td>
+            <td><span class="prize-donor">Studio 58 London</span><br><span class="prize-desc">Haircut</span></td>
+            <td class="prize-value">£90</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Catherine Fortune-Smith</td>
+            <td><span class="prize-donor">Carol Joy London</span><br><span class="prize-desc">Beauty bar skincare set</span></td>
+            <td class="prize-value">£80</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Paulina Mikolajczyk</td>
+            <td><span class="prize-donor">Clapton Country Club</span><br><span class="prize-desc">Meal for two with wine</span></td>
+            <td class="prize-value">£80</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Dana Gow</td>
+            <td><span class="prize-donor">Karv</span><br><span class="prize-desc">Meal for two</span></td>
+            <td class="prize-value">£80</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Natalie Caetano</td>
+            <td><span class="prize-donor">Mudra Yoga</span><br><span class="prize-desc">5-class yoga pass</span></td>
+            <td class="prize-value">£70</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Robert John</td>
+            <td><span class="prize-donor">Mudra Yoga</span><br><span class="prize-desc">5-class yoga pass</span></td>
+            <td class="prize-value">£70</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Rebecca Wiltshire</td>
+            <td><span class="prize-donor">Rowans Bowling</span><br><span class="prize-desc">One-hour bowling lane</span></td>
+            <td class="prize-value">£65</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Rosalind Jones</td>
+            <td><span class="prize-donor">Corrochios</span><br><span class="prize-desc">£60 voucher</span></td>
+            <td class="prize-value">£60</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Humberto de Sousa</td>
+            <td><span class="prize-donor">EartH Hackney</span><br><span class="prize-desc">Pair of guest-list tickets</span></td>
+            <td class="prize-value">£60</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Simone Werzberger</td>
+            <td><span class="prize-donor">EartH Hackney</span><br><span class="prize-desc">Pair of guest-list tickets</span></td>
+            <td class="prize-value">£60</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Sarah Warren</td>
+            <td><span class="prize-donor">Sodo - Clapton</span><br><span class="prize-desc">Pizza, dessert & drinks voucher</span></td>
+            <td class="prize-value">£60</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Lowri Irene Pugh</td>
+            <td><span class="prize-donor">215 Hackney</span><br><span class="prize-desc">Brunch and drink for two</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Jennifer Flandro</td>
+            <td><span class="prize-donor">As Above So Below</span><br><span class="prize-desc">Cocktails for up to four people</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Joshua Christmas</td>
+            <td><span class="prize-donor">Brunswick East</span><br><span class="prize-desc">Brunch for two</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Anne Bourgeois-Vignon</td>
+            <td><span class="prize-donor">Carmela's Pizzeria</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Denise Allnutt</td>
+            <td><span class="prize-donor">Clissold Park Tavern</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Thomas MacManus</td>
+            <td><span class="prize-donor">Escocesa</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Angela Gomez</td>
+            <td><span class="prize-donor">Hilda</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Alex Powell</td>
+            <td><span class="prize-donor">Purdy & Fig</span><br><span class="prize-desc">Counter Clean starter kit</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Chris Boyle</td>
+            <td><span class="prize-donor">SportFive</span><br><span class="prize-desc">Arsenal football shirt</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Tasnim Desai</td>
+            <td><span class="prize-donor">Vision N16</span><br><span class="prize-desc">Shampoo & conditioner set</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Lily Christensen</td>
+            <td><span class="prize-donor">Wheat</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Emma Perkin</td>
+            <td><span class="prize-donor">Young Soles</span><br><span class="prize-desc">£50 voucher</span></td>
+            <td class="prize-value">£50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Jennifer Flandro</td>
+            <td><span class="prize-donor">Baby Bare Bubbles</span><br><span class="prize-desc">Gift box</span></td>
+            <td class="prize-value">£48</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Ausra Sereike-Beek</td>
+            <td><span class="prize-donor">Hyclo Skin</span><br><span class="prize-desc">Repair gel & moisturiser set</span></td>
+            <td class="prize-value">£48</td>
+          </tr>
+          <tr>
+            <td class="winner-name">K D Jones</td>
+            <td><span class="prize-donor">Cernamic</span><br><span class="prize-desc">Two-hour pottery taster class</span></td>
+            <td class="prize-value">£47</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Rosalind Jones</td>
+            <td><span class="prize-donor">Papo's Bagels</span><br><span class="prize-desc">Small bundle</span></td>
+            <td class="prize-value">£45</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Miss Ana Pedro</td>
+            <td><span class="prize-donor">Who Gives a Crap</span><br><span class="prize-desc">Box of toilet roll</span></td>
+            <td class="prize-value">£44</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Sue Maxwell</td>
+            <td><span class="prize-donor">Vaso's Ceramics</span><br><span class="prize-desc">Pair of handmade candle holders</span></td>
+            <td class="prize-value">£40</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Emily Wong</td>
+            <td><span class="prize-donor">JR Innovative Building</span><br><span class="prize-desc">£40 voucher</span></td>
+            <td class="prize-value">£40</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Andrea Lewis</td>
+            <td><span class="prize-donor">The Jolly Butchers</span><br><span class="prize-desc">Meal for two with drinks</span></td>
+            <td class="prize-value">£40</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Rachel Sylla</td>
+            <td><span class="prize-donor">Yum Yums</span><br><span class="prize-desc">£40 meal voucher</span></td>
+            <td class="prize-value">£40</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Madeleine Maine</td>
+            <td><span class="prize-donor">Prep Cookshop</span><br><span class="prize-desc">Goody bag</span></td>
+            <td class="prize-value">£40</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Hugh Williams</td>
+            <td><span class="prize-donor">Dulcie (Haekels)</span><br><span class="prize-desc">Small perfume</span></td>
+            <td class="prize-value">£38</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Lily Thompson</td>
+            <td><span class="prize-donor">Hidden Kitchen</span><br><span class="prize-desc">£35 meal voucher</span></td>
+            <td class="prize-value">£35</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Mrs Angela King</td>
+            <td><span class="prize-donor">The Good Egg</span><br><span class="prize-desc">Babka voucher</span></td>
+            <td class="prize-value">£35</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Kay Buchan</td>
+            <td><span class="prize-donor">Man Cave</span><br><span class="prize-desc">Adult cut & wash</span></td>
+            <td class="prize-value">£31</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Ally Rea</td>
+            <td><span class="prize-donor">Botivio</span><br><span class="prize-desc">Bottle of Botivo & socks</span></td>
+            <td class="prize-value">£30</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Daria Werner</td>
+            <td><span class="prize-donor">Kitchen Provisions</span><br><span class="prize-desc">Goodie bag</span></td>
+            <td class="prize-value">£30</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Dr Gareth O'Leary</td>
+            <td><span class="prize-donor">Stoke Newington Bookshop</span><br><span class="prize-desc">Book voucher</span></td>
+            <td class="prize-value">£30</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Yasmin Khostovan</td>
+            <td><span class="prize-donor">The Axe Pub</span><br><span class="prize-desc">Food & drink voucher</span></td>
+            <td class="prize-value">£30</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Mrs Angela King</td>
+            <td><span class="prize-donor">The Yellow Warbler</span><br><span class="prize-desc">Lunch for two with coffee</span></td>
+            <td class="prize-value">£30</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Soila Patajoki</td>
+            <td><span class="prize-donor">Biancas</span><br><span class="prize-desc">Two glasses of sparkling wine</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Melissa Vogeley</td>
+            <td><span class="prize-donor">Cake Show</span><br><span class="prize-desc">Cake</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Saphia Sahdra</td>
+            <td><span class="prize-donor">Meat N16</span><br><span class="prize-desc">Meat N16 book</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Soila Patajoki</td>
+            <td><span class="prize-donor">Ryan's N16</span><br><span class="prize-desc">Voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Senam Lassey</td>
+            <td><span class="prize-donor">Esters</span><br><span class="prize-desc">Café/bakery voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Iona Wakely</td>
+            <td><span class="prize-donor">Willy's Pies</span><br><span class="prize-desc">Voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Dez Veares</td>
+            <td><span class="prize-donor">The Little Wine Shop</span><br><span class="prize-desc">Voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Madeleine Maine</td>
+            <td><span class="prize-donor">Oddonos</span><br><span class="prize-desc">£25 voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Elif Kahraman</td>
+            <td><span class="prize-donor">Oddonos</span><br><span class="prize-desc">£25 voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Ebru Karasoy</td>
+            <td><span class="prize-donor">Oddonos</span><br><span class="prize-desc">£25 voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Cordelia Jenkins</td>
+            <td><span class="prize-donor">Oddonos</span><br><span class="prize-desc">£25 voucher</span></td>
+            <td class="prize-value">£25</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Laura Partridge</td>
+            <td><span class="prize-donor">Shine Holistic</span><br><span class="prize-desc">£20 voucher</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Joshua Christmas</td>
+            <td><span class="prize-donor">Sunnyside</span><br><span class="prize-desc">6-pack spiced rum & ginger beer</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Mr J A Allison</td>
+            <td><span class="prize-donor">Jollein</span><br><span class="prize-desc">£20 online voucher</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Jonathan Shenfield</td>
+            <td><span class="prize-donor">Jollein</span><br><span class="prize-desc">£20 online voucher</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Daniel Wade</td>
+            <td><span class="prize-donor">King Frank</span><br><span class="prize-desc">5 free drinks</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Katie Marcus</td>
+            <td><span class="prize-donor">King Frank</span><br><span class="prize-desc">5 free drinks</span></td>
+            <td class="prize-value">£20</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Kyverdale Road</td>
+            <td><span class="prize-donor">The Castle Cinema</span><br><span class="prize-desc">Cinema membership</span></td>
+            <td class="prize-value">£17.50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Julie Kempston</td>
+            <td><span class="prize-donor">Cadbury's Direct</span><br><span class="prize-desc">Selection box</span></td>
+            <td class="prize-value">£15</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Ann-Marie Corvin</td>
+            <td><span class="prize-donor">Cadbury's Direct</span><br><span class="prize-desc">Selection box</span></td>
+            <td class="prize-value">£15</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Marie Gregor</td>
+            <td><span class="prize-donor">Shrine to the Vine</span><br><span class="prize-desc">Bottle of wine</span></td>
+            <td class="prize-value">£15</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Simon Liss</td>
+            <td><span class="prize-donor">Shrine to the Vine</span><br><span class="prize-desc">Bottle of wine</span></td>
+            <td class="prize-value">£15</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Andrea Lewis</td>
+            <td><span class="prize-donor">Romeo & Giuletta</span><br><span class="prize-desc">500g gelato tub</span></td>
+            <td class="prize-value">£12</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Katie Inman</td>
+            <td><span class="prize-donor">Romeo & Giuletta</span><br><span class="prize-desc">500g gelato tub</span></td>
+            <td class="prize-value">£12</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Rosalind Jones</td>
+            <td><span class="prize-donor">Romeo & Giuletta</span><br><span class="prize-desc">500g gelato tub</span></td>
+            <td class="prize-value">£12</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Viktoriia Pohorila</td>
+            <td><span class="prize-donor">Romeo & Giuletta</span><br><span class="prize-desc">500g gelato tub</span></td>
+            <td class="prize-value">£12</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Imran Maqbool</td>
+            <td><span class="prize-donor">Hailey's Nails</span><br><span class="prize-desc">Nail polish voucher</span></td>
+            <td class="prize-value">£10</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Catherine Losing</td>
+            <td><span class="prize-donor">Today Bread</span><br><span class="prize-desc">Sourdough loaf & two coffees</span></td>
+            <td class="prize-value">£10</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Juliette Roche</td>
+            <td><span class="prize-donor">Bake Street</span><br><span class="prize-desc">£10 voucher</span></td>
+            <td class="prize-value">£10</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Emily Harding</td>
+            <td><span class="prize-donor">Bake Street</span><br><span class="prize-desc">£10 voucher</span></td>
+            <td class="prize-value">£10</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Soshana Fearn</td>
+            <td><span class="prize-donor">Suba</span><br><span class="prize-desc">Coffee & pastry</span></td>
+            <td class="prize-value">£7.50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Terunesh Mckoy</td>
+            <td><span class="prize-donor">Suba</span><br><span class="prize-desc">Coffee & pastry</span></td>
+            <td class="prize-value">£7.50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Simon Liss</td>
+            <td><span class="prize-donor">Suba</span><br><span class="prize-desc">Coffee & pastry</span></td>
+            <td class="prize-value">£7.50</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Michelle Woolfenden</td>
+            <td><span class="prize-donor">Bake Street</span><br><span class="prize-desc">£5 voucher</span></td>
+            <td class="prize-value">£5</td>
+          </tr>
+          <tr>
+            <td class="winner-name">Jayne Moseley</td>
+            <td><span class="prize-donor">Bake Street</span><br><span class="prize-desc">£5 voucher</span></td>
+            <td class="prize-value">£5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="raffle-info.html">← Back to Raffle Info</a>
+    </div>
+  </div>
+</body>
+</html>
+
