@@ -262,14 +262,16 @@ def send_email(recipient_email, recipient_name, subject, plain_body, html_body, 
 def main():
     # Parse command line arguments
     if len(sys.argv) < 2:
-        print("Usage: python send_winner_emails.py <winners.csv> [--dry-run] [--yes]")
+        print("Usage: python send_winner_emails.py <winners.csv> [--dry-run] [--test] [--yes]")
         print("\nOptions:")
-        print("  --dry-run    Preview emails without sending")
+        print("  --dry-run    Preview full emails without sending")
+        print("  --test       Just list who would be emailed (quick check)")
         print("  --yes        Skip confirmation prompt")
         sys.exit(1)
     
     csv_path = sys.argv[1]
     dry_run = '--dry-run' in sys.argv
+    test_mode = '--test' in sys.argv
     skip_confirm = '--yes' in sys.argv
     
     # Check if CSV exists
@@ -281,7 +283,7 @@ def main():
     smtp_user = None
     smtp_password = None
     
-    if not dry_run:
+    if not dry_run and not test_mode:
         smtp_user = os.environ.get('GMAIL_USER')
         smtp_password = os.environ.get('GMAIL_APP_PASSWORD')
         
@@ -337,6 +339,22 @@ def main():
         print(f"Fix the emails in your CSV and re-run, or contact them manually.\n")
     
     print(f"✅ {len(valid_winners)} valid email(s) ready to send")
+    
+    # Test mode - just list recipients and exit
+    if test_mode:
+        print("\n" + "="*60)
+        print("TEST MODE - Recipients who would be emailed:")
+        print("="*60 + "\n")
+        for i, winner in enumerate(valid_winners, 1):
+            prize_desc = winner['prize']['description'] or winner['prize']['donor']
+            print(f"{i:3}. {winner['name']}")
+            print(f"     📧 {winner['email']}")
+            print(f"     🎁 {prize_desc} ({winner['prize']['value']})")
+            print()
+        print("="*60)
+        print(f"Total: {len(valid_winners)} emails would be sent")
+        print("="*60)
+        sys.exit(0)
     
     if dry_run:
         print("\n🔍 DRY RUN MODE - No emails will be sent\n")
