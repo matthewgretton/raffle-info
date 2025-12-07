@@ -166,6 +166,30 @@
 
   /* Responsive */
   @media (max-width: 600px) {
+    .header {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .header-logo,
+    .header-pta-logo {
+      order: 1;
+      flex: 0 0 auto;
+    }
+    .header-logo img,
+    .header-pta-logo img {
+      height: 42px;
+    }
+    .header-pta-logo img {
+      max-width: 140px;
+    }
+    .header-text {
+      order: 2;
+      flex: 1 1 100%;
+      min-width: auto;
+      text-align: center;
+    }
     table {
       font-size: 0.8rem;
     }
