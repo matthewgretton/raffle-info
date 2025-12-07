@@ -236,36 +236,34 @@ Great news, you're a winner! 🎉
 Your prize:
     {donor} – {prize_desc}
 
-This email is your proof of winning. To claim your prize:
-  • Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email raffle@jubileepta.org.uk to arrange
-  • Digital vouchers: we'll send these separately by email
+If you are certain you will use your prize, please let us know by responding to this email.
 
-Please claim by Friday 12th December. Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used. If you won't use it, please let us know so another family can enjoy it.
+Many prizes can be sent by email. For those that need to be picked up, someone from the Raffle team will be at the Cazenove entrance at drop off on Monday, Tuesday and Thursday.
 
-Thanks for taking part, together we raised an amazing {total_str} for the KS2 playground!
+If we haven't heard from you by Friday 12th December, we'll assume you don't want the prize and it will be re-entered into the draw so another family can enjoy it.
+
+Thanks for taking part - together we raised a staggering {total_str} towards the KS2 playground!
+
+This email is your proof of winning.
 
 Best wishes,
-
 Raffle Team
 """
     
-    # HTML version - prize box at top, simple flow at end
+    # HTML version - with prize box, all content in one flow
     html_body = f"""<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-<p style="font-size: 16px;">Hi {first_name},</p>
-<p style="font-size: 18px;"><strong>Great news, you're a winner!</strong> 🎉</p>
-<div style="background: #f0f7ff; border-left: 4px solid #4a90e2; padding: 15px 20px; margin: 15px 0; border-radius: 4px;">
-<p style="margin: 0 0 8px 0; font-size: 14px; color: #666;">YOUR PRIZE</p>
-<p style="margin: 0 0 5px 0; font-size: 18px;"><strong>{donor}</strong></p>
-<p style="margin: 0; color: #666;">{prize_desc}</p>
-</div>
-<p style="font-size: 14px;">This email is your proof of winning.</p>
-<p style="font-size: 14px;"><strong>To claim your prize:</strong><br>• Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email <a href="mailto:raffle@jubileepta.org.uk">raffle@jubileepta.org.uk</a> to arrange<br>• Digital vouchers: we'll send these separately by email</p>
-<p style="font-size: 14px;"><strong>Please claim by Friday 12th December.</strong> Any unclaimed prizes will automatically be re-entered into the draw. We really want every prize to be used. If you won't use it, please let us know so another family can enjoy it.</p>
-<p style="font-size: 14px;">Thanks for taking part, together we raised an amazing <strong>{total_str}</strong> for the KS2 playground!</p>
-<p style="font-size: 14px;">Best wishes,<br><strong>Raffle Team</strong></p>
+<p>Hi {first_name},</p>
+<p><strong>Great news, you're a winner!</strong> 🎉</p>
+<p style="background: #f0f7ff; border-left: 4px solid #4a90e2; padding: 15px 20px; margin: 15px 0; border-radius: 4px;"><span style="font-size: 12px; color: #666;">YOUR PRIZE</span><br><strong style="font-size: 18px;">{donor}</strong><br><span style="color: #666;">{prize_desc}</span></p>
+<p>If you are certain you will use your prize, please let us know by <strong>responding to this email</strong>.</p>
+<p>Many prizes can be sent by email. For those that need to be picked up, someone from the Raffle team will be at the Cazenove entrance at drop off on Monday, Tuesday and Thursday.</p>
+<p>If we haven't heard from you by <strong>Friday 12th December</strong>, we'll assume you don't want the prize and it will be re-entered into the draw so another family can enjoy it.</p>
+<p>Thanks for taking part - together we raised a staggering <strong>{total_str}</strong> towards the KS2 playground!</p>
+<p><strong>This email is your proof of winning.</strong></p>
+<p>Best wishes,<br><strong>Raffle Team</strong></p>
 </body>
 </html>"""
     
