@@ -35,6 +35,72 @@ SMTP_PORT = 587
 # Path to raffle-tracker.html (relative to this script's parent directory)
 TRACKER_HTML_PATH = Path(__file__).parent.parent / "raffle-tracker.html"
 
+# Better prize descriptions (donor -> detailed description)
+PRIZE_DESCRIPTIONS = {
+    "Basement 144": "5-hour venue hire (worth £750)",
+    "Hyatt Hotel": "2 nights in deluxe king with breakfast (worth £700)",
+    "Architecture for the Senses": "Design workshop & site visit (worth £600)",
+    "F45 Dalston": "3-month membership (worth £580)",
+    "Oblix - The Shard": "Three-course dinner with wine for two (worth £350)",
+    "Instagym": "3 months platinum membership (worth £300)",
+    "The Organised Curator": "Organising session (worth £150-£300)",
+    "Imogen Love": "Private sound bath for 4 at N16 studio (worth £280)",
+    "Blok Clapton": "10 premium class pack (worth £235)",
+    "Tempo Dance": "1 week dance camp (worth £225)",
+    "1 Hotel Mayfair": "60-minute massage (worth £180)",
+    "Funn Clubb": "1 week holiday club - Feb half term (worth £175)",
+    "Desi Dolls": "Toys (Islamic faith) (worth £160)",
+    "NTS": "Clothing & merch bundle (worth £150)",
+    "Dulcie (formerly Haekels)": "100ml fragrance (worth £140)",
+    "Simply Circus": "2-day holiday camp pass (worth £130)",
+    "We Are Worm": "Wreath (worth £120)",
+    "Tom Foolery": "Voucher (£125)",
+    "Calong": "Meal voucher (£100)",
+    "Tako": "Dining voucher (£100)",
+    "Whole Foods": "Goodie bag (approx £100)",
+    "Londis N16": "Gift hamper (approx £93)",
+    "Studio 58 London": "Haircut (worth £90)",
+    "Carol Joy London": "Beauty bar skincare set (worth £80)",
+    "Clapton Country Club": "Meal for two with a bottle of wine (worth £80)",
+    "Karv": "Meal for two (worth £80)",
+    "Mudra Yoga": "5-class pass (worth £70)",
+    "EartH Hackney": "Pair of tickets (worth £60)",
+    "Corrochios": "Voucher (£60)",
+    "Pilates-Me": "1-month intro pass (worth £55)",
+    "King Frank": "2-course meal for 2 with a bottle of wine (worth £55)",
+    "Simply Hair": "Haircut (worth £55)",
+    "Stokey Bears": "1-month unlimited breakfast (worth £50)",
+    "Carmela's Pizzeria": "Voucher (£50)",
+    "Clissold Park Tavern": "Voucher (£50)",
+    "Escocesa": "Voucher (£50)",
+    "Hilda": "Voucher (£50)",
+    "Wheat": "Voucher (£50)",
+    "Fleury Food Co.": "4-person celebration hamper (worth £45)",
+    "Little Angel Theatre": "Family ticket to a show (worth £44)",
+    "JR Innovative Building": "Voucher (£40)",
+    "Prep Cookshop": "Cooking accessories (worth £40)",
+    "Yum Yums": "Meal voucher (£40)",
+    "Hidden Kitchen": "Meal voucher (£35)",
+    "The Good Egg": "Babka voucher (£35)",
+    "Stoke Newington Bookshop": "Book voucher (£30)",
+    "The Axe Pub": "Food & drink voucher (£30)",
+    "Kitchen Provisions": "Goodie bag (approx £30)",
+    "Suba": "Brunch for two (worth £30)",
+    "Ryan's N16": "Voucher (£25)",
+    "Esters": "Café/bakery voucher (£25)",
+    "Willy's Pies": "Voucher for 12 handheld pies (£25)",
+    "The Little Wine Shop": "Voucher (£25)",
+    "Biancas": "Two glasses of sparkling wine (approx £25)",
+    "Jolley's": "Men's grooming package (worth £22.50)",
+    "Jollein": "Online voucher (£20)",
+    "Nando's": "Voucher (£20)",
+    "Peach's": "5 free drinks (approx £20)",
+    "The Dusty Knuckle": "Bread & pastries (worth £15)",
+    "Shrine to the Vine": "Bottle of wine (approx £15)",
+    "Hailey's Nails": "Nail polish voucher (£10)",
+    "Allpress": "Coffee & pastry (approx £7.50)",
+}
+
 
 # =============================================================================
 # HELPER FUNCTIONS
@@ -148,13 +214,19 @@ def create_email_content(winner_name, prize_info, total_raised):
     Create the email subject and body for a winner.
     Returns subject, plain_text_body, html_body
     """
-    subject = "🎉 You've won a prize in the Jubilee Winter Fair Raffle!"
-    
     # Format the total raised nicely
     total_str = f"£{total_raised:,}" if total_raised else "over £700"
     
     first_name = winner_name.split()[0]
-    prize_desc = prize_info['description'] if prize_info['description'] else prize_info['donor']
+    
+    # Use better description from lookup if available
+    donor = prize_info['donor']
+    if donor in PRIZE_DESCRIPTIONS:
+        prize_desc = PRIZE_DESCRIPTIONS[donor]
+    else:
+        prize_desc = prize_info['description'] if prize_info['description'] else donor
+    
+    subject = f"🎉 Jubilee Raffle Winner - {donor}"
     
     # Plain text version
     plain_body = f"""Hi {first_name},
@@ -162,9 +234,7 @@ def create_email_content(winner_name, prize_info, total_raised):
 Great news, you're a winner! 🎉
 
 Your prize:
-    {prize_desc}
-    From: {prize_info['donor']}
-    Worth: {prize_info['value']}
+    {donor} – {prize_desc}
 
 This email is your proof of winning. To claim your prize:
   • Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email raffle@jubileepta.org.uk to arrange
@@ -188,8 +258,8 @@ Raffle Team
 <p style="font-size: 18px;"><strong>Great news, you're a winner!</strong> 🎉</p>
 <div style="background: #f0f7ff; border-left: 4px solid #4a90e2; padding: 15px 20px; margin: 15px 0; border-radius: 4px;">
 <p style="margin: 0 0 8px 0; font-size: 14px; color: #666;">YOUR PRIZE</p>
-<p style="margin: 0 0 5px 0; font-size: 18px;"><strong>{prize_desc}</strong></p>
-<p style="margin: 0; color: #666;">From: {prize_info['donor']}<br>Worth: <strong>{prize_info['value']}</strong></p>
+<p style="margin: 0 0 5px 0; font-size: 18px;"><strong>{donor}</strong></p>
+<p style="margin: 0; color: #666;">{prize_desc}</p>
 </div>
 <p style="font-size: 14px;">This email is your proof of winning.</p>
 <p style="font-size: 14px;"><strong>To claim your prize:</strong><br>• Physical prizes: collect Monday to Wednesday (week of 8th Dec) after school drop-off, or email <a href="mailto:raffle@jubileepta.org.uk">raffle@jubileepta.org.uk</a> to arrange<br>• Digital vouchers: we'll send these separately by email</p>
